@@ -8,6 +8,11 @@ dashboard.controller("newPostController", ['$rootScope', '$scope', '$state', '$l
 
         vm.message = {};
 
+        /*$scope.tinymceOptions = {
+            plugins: 'link image code',
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+        };*/
+
         vm.submitForm = function () {
             console.log(vm.message);
             var request = $http({

@@ -9,7 +9,7 @@
 
  ===========================================================*/
 
-var dashboard = angular.module('dashboard', ['ui.router', 'ngAnimate','ngMaterial']);
+var dashboard = angular.module('dashboard', ['ui.router', 'ngAnimate','ngMaterial','ui.tinymce']);
 
 
 dashboard.config(["$stateProvider", function ($stateProvider,$stateParams) {
@@ -175,63 +175,26 @@ dashboard.config(["$stateProvider", function ($stateProvider,$stateParams) {
     });
 
     //view posts page state
-    $stateProvider.state('app/readPost', {
+    $stateProvider.state('app.readPost', {
         cache: false,
         url: '/readPost/:id',
         templateUrl: 'app/modules/dashboard/views/readpost.html',
-      /*  controller: 'readPostsController',*/
-        controller: function ($scope,$http,$stateParams) {
-            console.log("coming to readPostsController");
-            console.log(" $stateParams.id "+  $stateParams.id);
+        controller: 'readPostsController',
+        controllerAs: 'vm'
+       /* data: {
+         pageTitle: 'View Posts'
+         }*/
+    });
 
-            var getAllPostUrl = '/webapi/blogPost/' + $stateParams.id;
-            $http.get(getAllPostUrl)
-                .success(function (response) {
-                    $scope.id = $stateParams.id;
-                    console.log("coming to  success");
-                    console.log("  response.length "+response.length);
-                    $scope.myText = "dsfffffffffffffffffffffff";
-                    $scope.viewPost = response;
-                    if (response.length > 0) {
-                        console.log("if response.length "+response.length);
-                        $scope.postIsEmpty = true;
-                        $scope.viewPost = response;
-                        $scope.alerts = [{}];
-                        $scope.alerts.push({type: 'success', msg: 'Update Success'});
-                        $scope.truck_type = {};
-                        $scope.matrialType = '';
-                        $scope.maxCapacity = '';
-                        $scope.noOfTrucks = '';
-                    }
-                    else {
-                        console.log("else response.length "+response.length);
-                        $scope.postIsEmpty = false;
-                        $scope.alerts = [{}];
-                        $scope.alerts.push({type: 'warning', msg: 'Update Failed'});
-                    }
-                })
-                .error(function (response) {
-                    $scope.alerts = [{}];
-                    $scope.alerts.push({type: 'danger', msg: 'Something went wrong network Failure.'});
-                })
-            $scope.viewArticleById = function(id) {
-                console.log("psot " + id);
-
-
-
-            };
-
-
-            $scope.viewArticleById($stateParams.id);
-
-
-
-
-        },
-        controllerAs: 'vm',
-        data: {
-            pageTitle: 'View Posts'
-        }
+    $stateProvider.state('app.listposts', {
+        cache: false,
+        url: '/listposts',
+        templateUrl: 'app/modules/dashboard/views/listposts.html',
+        controller: 'listPostsController',
+        controllerAs: 'vm'
+        /* data: {
+         pageTitle: 'View Posts'
+         }*/
     });
 
 }]);

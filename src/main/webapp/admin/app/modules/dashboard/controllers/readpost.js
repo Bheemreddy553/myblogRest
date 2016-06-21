@@ -2,8 +2,8 @@
  * Created by Bhargav on 16-06-2016.
  */
 
-dashboard.controller("readPostsController", ['$rootScope', '$scope', '$state','$stateParams',  '$location', 'dashboardService', 'Flash', '$http',
-    function ($rootScope, $scope,$http, $state, $location, dashboardService, Flash,$stateParams) {
+dashboard.controller("readPostsController", ['$rootScope', '$scope','$http', '$stateParams','$state', '$location', 'dashboardService', 'Flash',
+    function ($rootScope, $scope,$http,$stateParams, $state, location, dashboardService, Flash) {
         var vm = this;
 
         vm.message = {};
@@ -32,35 +32,41 @@ dashboard.controller("readPostsController", ['$rootScope', '$scope', '$state','$
         console.log("coming to readPostsController");
         console.log(" $stateParams.id "+  $stateParams.id);
 
-        $scope.viewArticleById($stateParams.id);
-
-
 
         $scope.viewArticleById = function(id){
-            console.log("psot "+ id);
-            var getAllPostUrl='/webapi/blogPost/'+id;
+            var getAllPostUrl = '/webapi/blogPost/' + $stateParams.id;
             $http.get(getAllPostUrl)
-                .success(function(response) {
-                    if(response.length > 0 ) {
+                .success(function (response) {
+                    $scope.id = $stateParams.id;
+                    console.log("coming to  success");
+                    console.log("  response.length "+response.length);
+                    $scope.myText = "dsfffffffffffffffffffffff";
+                    $scope.viewPost = response;
+                    if (response.length > 0) {
+                        console.log("if response.length "+response.length);
                         $scope.postIsEmpty = true;
                         $scope.viewPost = response;
                         $scope.alerts = [{}];
                         $scope.alerts.push({type: 'success', msg: 'Update Success'});
-                        $scope.truck_type={};$scope.matrialType='';$scope.maxCapacity='';$scope.noOfTrucks='';
+                        $scope.truck_type = {};
+                        $scope.matrialType = '';
+                        $scope.maxCapacity = '';
+                        $scope.noOfTrucks = '';
                     }
-                    else{
+                    else {
+                        console.log("else response.length "+response.length);
                         $scope.postIsEmpty = false;
                         $scope.alerts = [{}];
                         $scope.alerts.push({type: 'warning', msg: 'Update Failed'});
                     }
                 })
-                .error(function(response) {
+                .error(function (response) {
                     $scope.alerts = [{}];
                     $scope.alerts.push({type: 'danger', msg: 'Something went wrong network Failure.'});
-                })
+                });
         };
 
-
+        $scope.viewArticleById($stateParams.id);
 
 
 

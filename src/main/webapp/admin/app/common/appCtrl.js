@@ -165,6 +165,16 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
             title: "View Posts",
             icon: "file-text-o",
             state: "viewPosts"
+        },
+        {
+            title: "Read Posts",
+            icon: "file-text-o",
+            state: "readPost"
+        },
+        {
+            title: "View Posts",
+            icon: "file-text-o",
+            state: "listposts"
         }
     ];
 
