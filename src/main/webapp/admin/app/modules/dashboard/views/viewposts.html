@@ -158,58 +158,72 @@ Date: 05 Jan 2016
         <!--  <alert ng-repeat="alert in alerts" ng-if="alert.msg" dismiss-on-timeout='5000' type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 -->
          <div class="articl_list">
-                 <div class="list-group" ng-repeat="post in posts">
-                     <a ui-sref-active="active"ui-sref="app.readPost({ id: post.id })" class="list-group-item clearfix">
-                         <span class="glyphicon glyphicon-file"></span>
-                         {{post.title}}
-                      <span class="pull-right">
-                        <button class="btn btn-xs btn-info">CCS</button>
-                        <button class="btn btn-xs btn-warning">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                      </span>
-                     </a>
-                 </div>
-                    <!--<div class="col-md-9" >
-                        <div class="row" ng-repeat="post in posts">
-                            <div class="col-sm-12"><a  ui-sref-active="active"ui-sref="app.readPost({ id: post.id })" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-12">
-                                <h3 class="title"><a  ui-sref-active="active"  ui-sref="app.readPost({ id:  post.id })"    class="">{{post.title}}</a></h3>
-                                <p class="text-muted"><span class="glyphicon glyphicon-lock"></span> &lt;!&ndash;{{post.body}}&ndash;&gt;</p>
-                                <p >{{post.body}}</p>
-                                <p class="text-muted">Presented by <a href="#">Ellen Richey</a>  Date : {{post.time |  date : "fullDate" }}</p>
+             <div class="table-responsive">
+                 <table class="table">
+                    <!-- <thead>
+                     <tr>
+                         <th>#</th>
+                         <th>Firstname</th>
+                         <th>Lastname</th>
+                         <th>Age</th>
+                         <th>City</th>
+                         <th>Country</th>
+                     </tr>
+                     </thead>-->
+                     <tbody>
+                     <tr ng-repeat="post in posts">
+                         <td>{{$index}}</td>
+                         <td><a  ui-sref-active="active"  ui-sref="app.readPost({ id:  post.id })"    class="">{{post.title}}</a></td>
+                         <td>{{post.time}}</td>
+                         <td style="width: 20%;">
+                             <a href="#" class="table-link">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                            </span>
+                             </a>
+                             <a href="#" class="table-link">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span>
+                             </a>
+                             <a href="#" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+                             </a>
+                         </td>
+                     </tr>
+                     </tbody>
+                 </table>
+             </div>
+         </div>
 
-                            </div>
-                            <hr>
-                        </div>-->
+        <div class="row euqal">
+            <div class="well-sm">
+                <a ui-sref-active="selected" ui-sref="app.readPost({ id: 'dfsdf1' })" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
+                <h3 class="title" ui-sref-active="selected"  ui-sref="app.readPost({ id:  1 })">How to Fight Fraud with Artificial Intelligence and Intelligent Analytics</h3>
+                <p class="text-muted"><span class="glyphicon glyphicon-lock"></span> Available Exclusively for Premium Members</p>
+                <p>Could artificial intelligence have been used to prevent the high-profile Target breach? The concept is not so far-fetched. Organizations such as Mastercard and RBS WorldPay have long relied on artificial intelligence to detect fraudulent transaction patterns and prevent card.</p>
 
-                        <div class="row euqal">
-                            <div class="well-sm">
-                                <a ui-sref-active="selected" ui-sref="app.readPost({ id: 'dfsdf1' })" class=""><img src="http://placehold.it/1280X720" class="img-responsive"></a>
-                                <h3 class="title" ui-sref-active="selected"  ui-sref="app.readPost({ id:  1 })">How to Fight Fraud with Artificial Intelligence and Intelligent Analytics</h3>
-                                <p class="text-muted"><span class="glyphicon glyphicon-lock"></span> Available Exclusively for Premium Members</p>
-                                <p>Could artificial intelligence have been used to prevent the high-profile Target breach? The concept is not so far-fetched. Organizations such as Mastercard and RBS WorldPay have long relied on artificial intelligence to detect fraudulent transaction patterns and prevent card.</p>
+                <p class="text-muted" >Presented by <a href="#">Ellen Richey</a></p>
+            </div>
 
-                                <p class="text-muted" >Presented by <a href="#">Ellen Richey</a></p>
-                            </div>
+        </div>
 
-                        </div>
+        <ul class="pagination pagination-lg pull-right">
+            <li><a href="#">«</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">»</a></li>
+        </ul>
 
-
-
-
-
-                        <ul class="pagination pagination-lg pull-right">
-                            <li><a href="#">«</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
-                    </div>
+   </div>
                     <!--  <div class="col-md-3">
 
                           &lt;!&ndash;<div class="row" >
@@ -272,6 +286,5 @@ Date: 05 Jan 2016
 
 
                       </div>-->
-        </div>
-    </div>
+
 </section><!-- /.content -->
